@@ -6,14 +6,14 @@ import os
 
 
 def print_values_comparison(sheet1, sheet2):
-    print('---')
+    print('---------- X ----------')
     comparison_values = sheet1.values == sheet2.values 
     rows,cols = np.where(comparison_values == False)
     copied_sheet = copy.deepcopy(sheet1)
     for item in zip(rows, cols):
         copied_sheet.iloc[item[0], item[1]] = '[{}]~[{}]'.format(sheet1.iloc[item[0], item[1]], sheet2.iloc[item[0], item[1]])
     print(copied_sheet)
-    print('---------- X ----------\n')
+    print('---------- X ----------')
 
 
 
