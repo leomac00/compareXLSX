@@ -27,7 +27,7 @@ if __name__ == '__main__':
     #Comparing sheets inside workbook and getting the intersected items to be compared next
     sheet_names1 = pd.ExcelFile(xlsx_file_names[0]).sheet_names
     sheet_names2 = pd.ExcelFile(xlsx_file_names[1]).sheet_names
-    sheet_names = list(set(sheet_names1) & set(sheet_names2))
+    sheet_names = list(set(sheet_names1).intersection(set(sheet_names2)))
     are_sheets_equal = sheet_names1 == sheet_names2
     print('\n--->  Comparing sheets inside both workbooks...')
     print('Same sheets between both items? -> ' + str(are_sheets_equal))
