@@ -33,7 +33,7 @@ if __name__ == '__main__':
     print('Same sheets between both items? -> ' + str(are_sheets_equal))
     if not are_sheets_equal:
         differences = (set(sheet_names1).difference(set(sheet_names))).union((set(sheet_names2).difference(set(sheet_names))))
-        print('Mismatching sheets found: ', differences)
+        print(' - Mismatching sheets found: ', differences)
         
     #Comparing values inside each sheet
     print('\n--->   Comparing values inside each sheet...')
