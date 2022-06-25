@@ -32,13 +32,13 @@ if __name__ == '__main__':
     print('\n--->  Comparing sheets inside both workbooks...')
     print('Same sheets between both items? -> ' + str(are_sheets_equal))
     if not are_sheets_equal:
-        print('Mismatching sheets: ', set(sheet_names1).difference(set(sheet_names2)))
+        print('Mismatching sheets found: ', set(sheet_names1).difference(set(sheet_names2)))
         
     #Comparing values inside each sheet
     print('\n--->   Comparing values inside each sheet...')
     for i in range(len(sheet_names)):
         df1 = pd.read_excel(xlsx_file_names[0], sheet_names[i])
         df2 = pd.read_excel(xlsx_file_names[1], sheet_names[i])
-        print('Sheet \'' + sheet_names[i] + '\' match? -> ' + str(df1.equals(df2)))
+        print('Both sheets \'' + sheet_names[i] + '\' match? -> ' + str(df1.equals(df2)))
         if not df1.equals(df2):
             print_values_comparison(df1, df2)
