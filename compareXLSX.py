@@ -21,16 +21,11 @@ def print_values_comparison(sheet1, sheet2):
 
 
 if __name__ == '__main__':
-    # # Get files to be compared
+    #	Get files to be compared
     xlsx_file_names = []
     xlsx_file_names.append('./'+ sys.argv[1])
     xlsx_file_names.append('./'+ sys.argv[2])
 
-	#	The following 3 lines will get the first 2 .xlsx files from the curent folder to use them to be compared
-    #	for file in os.listdir('./'):
-    #   	if file.endswith('.xlsx'):
-    #        	xlsx_file_names.append(file)
-    
     #Comparing sheets inside workbook and getting the intersected items to be compared next
     sheet_names1 = pd.ExcelFile(xlsx_file_names[0]).sheet_names
     sheet_names2 = pd.ExcelFile(xlsx_file_names[1]).sheet_names

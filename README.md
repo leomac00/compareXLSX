@@ -10,7 +10,7 @@ A simple Python project used A small tool to compare two Excel workbooks using p
 
 ## How to run
  1. Install all dependencies
- 2. Place TWO Excel files to be compared into the same folder as compareXLSX.py
+ 2. Place the files you want to compare in the same folder as the compareXLSX.py file
  3. Run the command from CLI "python compareXLSX.py \<file-1-name.xlsx\> \<file-2-name.xlsx\>"
 
 ### Documentation under development
