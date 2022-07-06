@@ -4,29 +4,36 @@ import copy
 import sys
 import os
 
+
 def print_sheets_comparison(names_list1, names_list2, names_intersection):
-    differences = (set(names_list1).difference(set(names_intersection))).union((set(names_list2).difference(set(names_intersection))))
+    differences = (set(names_list1).difference(set(names_intersection))).union(
+        (set(names_list2).difference(set(names_intersection))))
     print(' - Mismatching sheets found: ', differences)
+
 
 def print_values_comparison(sheet1, sheet2):
     print('---------- X ----------')
-    comparison_values = sheet1.values == sheet2.values 
-    rows,cols = np.where(comparison_values == False)
-    copied_sheet = copy.deepcopy(sheet1)
-    for item in zip(rows, cols):
-        copied_sheet.iloc[item[0], item[1]] = '[{}]~[{}]'.format(sheet1.iloc[item[0], item[1]], sheet2.iloc[item[0], item[1]])
-    print(copied_sheet)
-    print('---------- X ----------')
-
+    try:
+        comparison_values = sheet1.values == sheet2.values
+        rows, cols = np.where(comparison_values == False)
+        copied_sheet = copy.deepcopy(sheet1)
+        for item in zip(rows, cols):
+            copied_sheet.iloc[item[0], item[1]] = '[{}]~[{}]'.format(sheet1.iloc[item[0], item[1]],
+                                                                     sheet2.iloc[item[0], item[1]])
+        print(copied_sheet)
+    except:
+        print("The files could not be compared")
+    finally:
+        print('---------- X ----------')
 
 
 if __name__ == '__main__':
     #	Get files to be compared
     xlsx_file_names = []
-    xlsx_file_names.append('./'+ sys.argv[1])
-    xlsx_file_names.append('./'+ sys.argv[2])
+    xlsx_file_names.append('./' + sys.argv[1])
+    xlsx_file_names.append('./' + sys.argv[2])
 
-    #Comparing sheets inside workbook and getting the intersected items to be compared next
+    # Comparing sheets inside workbook and getting the intersected items to be compared next
     sheet_names1 = pd.ExcelFile(xlsx_file_names[0]).sheet_names
     sheet_names2 = pd.ExcelFile(xlsx_file_names[1]).sheet_names
     sheet_names_intersection = list(set(sheet_names1) & set(sheet_names2))
@@ -36,7 +43,7 @@ if __name__ == '__main__':
     if not are_sheets_equal:
         print_sheets_comparison(sheet_names1, sheet_names2, sheet_names_intersection)
 
-    #Comparing values inside each sheet
+    # Comparing values inside each sheet
     print('\n--->   Comparing values inside each sheet...')
     for i in range(len(sheet_names_intersection)):
         df1 = pd.read_excel(xlsx_file_names[0], sheet_names_intersection[i])
