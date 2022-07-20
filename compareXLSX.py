@@ -17,7 +17,7 @@ def print_values_comparison(sheet1, sheet2):
         rows, cols = np.where(comparison_values == False)
         copied_sheet = copy.deepcopy(sheet1)
         for item in zip(rows, cols):
-            itemIsNan = sheet1.iloc[item[0], item[1]] == np.nan
+            itemIsNan = copied_sheet.iloc[item[0], item[1]] == np.nan
             if itemIsNan:
                 continue
             copied_sheet.iloc[item[0], item[1]] = '[{}]~[{}]'.format(sheet1.iloc[item[0], item[1]],
