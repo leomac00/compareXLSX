@@ -14,14 +14,14 @@ def print_values_comparison(sheet1, sheet2):
     print('---------- X ----------')
     try:
         comparison_values = sheet1.values == sheet2.values
-        rows, cols = np.where(comparison_values is False)
+        rows, cols = np.where(comparison_values is False and comparison_values is not np.nan)
         copied_sheet = copy.deepcopy(sheet1)
         for item in zip(rows, cols):
             copied_sheet.iloc[item[0], item[1]] = '[{}]~[{}]'.format(sheet1.iloc[item[0], item[1]],
                                                                      sheet2.iloc[item[0], item[1]])
         print(copied_sheet)
-    except:
-        print("The files could not be compared")
+    except Exception as e :
+        print("The files could not be compared, this happened:\n-->" + e)
     finally:
         print('---------- X ----------')
 
